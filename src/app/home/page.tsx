@@ -221,11 +221,11 @@ export default function HomePage() {
       {/* Navigation Unifiée */}
       <MainNavbar />
 
-      <div className="container mx-auto px-4 py-6">
-        <div className="grid lg:grid-cols-4 gap-6">
+      <div className="container mx-auto px-2 sm:px-4 py-3 sm:py-6">
+        <div className="grid lg:grid-cols-4 gap-3 sm:gap-6">
           
           {/* Sidebar gauche - Profil & Navigation */}
-          <div className="lg:col-span-1">
+          <div className="hidden lg:block lg:col-span-1">
             <Card className="mb-6">
               <CardHeader>
                 <div className="flex items-center gap-3">
@@ -309,7 +309,7 @@ export default function HomePage() {
           </div>
 
           {/* Feed principal */}
-          <div className="lg:col-span-2">
+          <div className="lg:col-span-2 order-2 lg:order-none">
             {/* Créer un post */}
             <Card className="mb-6">
               <CardContent className="pt-6">
@@ -537,7 +537,7 @@ export default function HomePage() {
           </div>
 
           {/* Sidebar droite - Stats Communauté & Opportunités */}
-          <div className="lg:col-span-1">
+          <div className="lg:col-span-1 order-1 lg:order-none">
             <CommunityStats />
             
             <Card className="mb-6">

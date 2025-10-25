@@ -2,7 +2,12 @@
 
 BPM Connect est l'écosystème complet pour développer votre carrière musicale : vendre vos services, collaborer, financer vos projets et monétiser votre talent.
 
-## 🚀 État du projet
+## 🌐 Déploiement
+
+- **Repository GitHub** : https://github.com/marvynclouet/BPMCONNECT
+- **Déploiement Vercel** : À connecter depuis [vercel.com](https://vercel.com)
+
+## �� État du projet
 
 **Version actuelle :** MVP Phase 1 - Authentification & Profils  
 **Status :** 🚧 En développement actif

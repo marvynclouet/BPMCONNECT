@@ -37,24 +37,24 @@ export default function HomePage() {
       </header>
 
       {/* Hero Section */}
-      <div className="container mx-auto px-4 pt-10 pb-24">
+      <div className="container mx-auto px-4 pt-6 sm:pt-10 pb-16 sm:pb-24">
         <div className="text-center max-w-4xl mx-auto">
           
-          <div className="mb-12 flex justify-center">
-            <InteractiveVinyl size={280} className="mx-auto" />
+          <div className="mb-8 sm:mb-12 flex justify-center">
+            <InteractiveVinyl size={200} className="mx-auto sm:w-[280px] sm:h-[280px]" />
           </div>
           
-          <p className="text-xl md:text-2xl text-muted-foreground mb-4 font-medium">
+          <p className="text-lg sm:text-xl md:text-2xl text-muted-foreground mb-4 font-medium">
             La plateforme carrière des créateurs
           </p>
           
-          <p className="text-lg text-muted-foreground mb-12 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-sm sm:text-base md:text-lg text-muted-foreground mb-8 sm:mb-12 max-w-2xl mx-auto leading-relaxed px-4">
             L'écosystème complet pour développer votre carrière musicale : 
             <strong className="text-foreground"> vendre vos services</strong>, <strong className="text-foreground">collaborer</strong>, 
             <strong className="text-foreground"> financer vos projets</strong> et <strong className="text-foreground">monétiser votre talent</strong>.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center mb-12 sm:mb-16 px-4">
             <Link href="/signup">
               <Button size="lg" className="w-full sm:w-auto text-lg px-8 py-3">
                 🚀 Commencer maintenant
@@ -76,17 +76,17 @@ export default function HomePage() {
       </div>
 
       {/* Pourquoi BPM Connect Section */}
-      <div className="container mx-auto px-4 py-16 bg-background/50">
+      <div className="container mx-auto px-4 py-8 sm:py-16 bg-background/50">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-4">
             Pourquoi BPM Connect ?
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-2xl mx-auto px-4">
             Trois raisons de rejoindre la plateforme qui révolutionne la carrière des créateurs musicaux
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto">
           {/* Card 1: Vendez vos services */}
           <Card className="border-2 hover:border-blue-500 dark:hover:border-blue-500 hover:shadow-lg transition-all duration-300">
             <CardHeader>
