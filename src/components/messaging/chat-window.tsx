@@ -96,7 +96,7 @@ export function ChatWindow({ messages, currentUserId, otherUser }: ChatWindowPro
           <div key={date}>
             {/* Date separator */}
             <div className="flex items-center justify-center my-6">
-              <div className="bg-gray-100 px-3 py-1 rounded-full text-xs text-gray-600">
+              <div className="bg-gray-100 dark:bg-gray-800 px-3 py-1 rounded-full text-xs text-gray-600 dark:text-gray-400">
                 {formatDateHeader(date)}
               </div>
             </div>
@@ -138,7 +138,7 @@ export function ChatWindow({ messages, currentUserId, otherUser }: ChatWindowPro
                       className={`max-w-[70%] rounded-2xl px-4 py-2 ${
                         isOwnMessage
                           ? 'bg-blue-600 text-white rounded-br-sm'
-                          : 'bg-gray-100 text-gray-900 rounded-bl-sm'
+                          : 'bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded-bl-sm'
                       }`}
                     >
                       {message.message_type === 'text' && (

@@ -41,7 +41,7 @@ export function MessageInput({
   }
 
   return (
-    <div className="border-t bg-white p-4">
+    <div className="border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900/50 p-4">
       {/* File upload buttons */}
       <div className="flex items-center gap-2 mb-3">
         <Button
@@ -50,7 +50,7 @@ export function MessageInput({
           size="sm"
           onClick={() => handleFileUpload('file')}
           disabled={disabled}
-          className="text-gray-500 hover:text-gray-700"
+          className="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300"
         >
           <Paperclip className="h-4 w-4" />
         </Button>
@@ -60,7 +60,7 @@ export function MessageInput({
           size="sm"
           onClick={() => handleFileUpload('image')}
           disabled={disabled}
-          className="text-gray-500 hover:text-gray-700"
+          className="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300"
         >
           <Image className="h-4 w-4" />
         </Button>
@@ -70,7 +70,7 @@ export function MessageInput({
           size="sm"
           onClick={() => handleFileUpload('audio')}
           disabled={disabled}
-          className="text-gray-500 hover:text-gray-700"
+          className="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300"
         >
           <Mic className="h-4 w-4" />
         </Button>
@@ -114,7 +114,7 @@ export function MessageInput({
       
       {/* Typing indicator */}
       {isTyping && (
-        <div className="text-xs text-gray-500 mt-2">
+        <div className="text-xs text-gray-500 dark:text-gray-400 mt-2">
           Appuyez sur Entrée pour envoyer, Shift+Entrée pour une nouvelle ligne
         </div>
       )}
