@@ -55,8 +55,8 @@ export function ConversationList({
                 key={conversation.id}
                 className={`p-3 cursor-pointer transition-all ${
                   selectedConversationId === conversation.id 
-                    ? 'bg-blue-50 dark:bg-blue-950/30 border-blue-200 dark:border-blue-800' 
-                    : 'border-gray-100 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800/50'
+                    ? 'bg-blue-50 dark:bg-blue-950/40 border-blue-200 dark:border-blue-800' 
+                    : 'bg-white dark:bg-gray-900/50 border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800/70'
                 }`}
                 onClick={() => onSelectConversation(conversation.id)}
               >
@@ -118,7 +118,7 @@ export function ConversationList({
                     {/* Service context */}
                     {conversation.service && (
                       <div className="mt-1.5">
-                        <Badge variant="outline" className="text-xs bg-white/50 dark:bg-gray-800/50">
+                        <Badge variant="outline" className="text-xs bg-gray-100 dark:bg-gray-800 border-gray-200 dark:border-gray-700">
                           📦 {conversation.service.title.length > 25 
                             ? conversation.service.title.substring(0, 25) + '...' 
                             : conversation.service.title}
