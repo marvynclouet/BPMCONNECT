@@ -9,7 +9,9 @@ import { Badge } from '@/components/ui/badge'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import Link from 'next/link'
-import { Heart, MessageCircle, Share2, Music, Users, Briefcase, TrendingUp, Plus, Image, FileAudio, Sparkles, ThumbsUp, PartyPopper, Flame, Send, Video, FileText, BarChart3, Handshake, ShoppingCart } from 'lucide-react'
+import { Heart, MessageCircle, Share2, Music, Users, Briefcase, TrendingUp, Plus, Image, FileAudio, Sparkles, ThumbsUp, PartyPopper, Flame, Send, Video, FileText, BarChart3, Handshake, ShoppingCart, X, DollarSign, CheckCircle, Calendar } from 'lucide-react'
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Stories } from '@/components/feed/stories'
 import { CommunityStats } from '@/components/feed/community-stats'
 import { Logo } from '@/components/ui/logo'
@@ -162,6 +164,10 @@ export default function HomePage() {
   const [postFilter, setPostFilter] = useState<'all' | 'collaboration' | 'opportunity' | 'products'>('all')
   const [reactedPosts, setReactedPosts] = useState<Set<number>>(new Set())
   const [newPostsCount, setNewPostsCount] = useState(3)
+  
+  // États pour les modales
+  const [showModal, setShowModal] = useState<string | null>(null)
+  const [postType, setPostType] = useState<'image' | 'video' | 'audio' | 'offer' | 'request' | 'survey' | null>(null)
 
   useEffect(() => {
     const checkAuth = () => {
@@ -194,6 +200,16 @@ export default function HomePage() {
     // Simuler la publication
     console.log('Nouveau post:', newPost)
     setNewPost('')
+  }
+
+  const handlePostTypeClick = (type: string) => {
+    setPostType(type as any)
+    setShowModal(type)
+  }
+
+  const handleCloseModal = () => {
+    setShowModal(null)
+    setPostType(null)
   }
 
   const getPostIcon = (type: string) => {
@@ -325,22 +341,22 @@ export default function HomePage() {
                     <div className="flex items-center justify-between gap-2">
                       {/* Boutons d'actions */}
                       <div className="flex items-center gap-1 flex-wrap">
-                        <Button size="sm" variant="ghost" className="h-7 px-2" title="Image">
+                        <Button size="sm" variant="ghost" className="h-7 px-2" title="Image" onClick={() => handlePostTypeClick('image')}>
                           <Image className="h-4 w-4 text-blue-500" />
                         </Button>
-                        <Button size="sm" variant="ghost" className="h-7 px-2" title="Vidéo">
+                        <Button size="sm" variant="ghost" className="h-7 px-2" title="Vidéo" onClick={() => handlePostTypeClick('video')}>
                           <Video className="h-4 w-4 text-purple-500" />
                         </Button>
-                        <Button size="sm" variant="ghost" className="h-7 px-2" title="Audio">
+                        <Button size="sm" variant="ghost" className="h-7 px-2" title="Audio" onClick={() => handlePostTypeClick('audio')}>
                           <FileAudio className="h-4 w-4 text-green-500" />
                         </Button>
-                        <Button size="sm" variant="ghost" className="h-7 px-2" title="Offre de service">
+                        <Button size="sm" variant="ghost" className="h-7 px-2" title="Offre de service" onClick={() => handlePostTypeClick('offer')}>
                           <Handshake className="h-4 w-4 text-orange-500" />
                         </Button>
-                        <Button size="sm" variant="ghost" className="h-7 px-2" title="Demande">
+                        <Button size="sm" variant="ghost" className="h-7 px-2" title="Demande" onClick={() => handlePostTypeClick('request')}>
                           <Sparkles className="h-4 w-4 text-yellow-500" />
                         </Button>
-                        <Button size="sm" variant="ghost" className="h-7 px-2" title="Sondage">
+                        <Button size="sm" variant="ghost" className="h-7 px-2" title="Sondage" onClick={() => handlePostTypeClick('survey')}>
                           <BarChart3 className="h-4 w-4 text-pink-500" />
                         </Button>
                       </div>
@@ -615,6 +631,147 @@ export default function HomePage() {
           <Plus className="h-6 w-6" />
         </Button>
       </div>
+
+      {/* Modale pour les offres de service */}
+      <Dialog open={showModal === 'offer'} onOpenChange={() => setShowModal(null)}>
+        <DialogContent className="max-w-2xl">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              <Handshake className="h-5 w-5 text-orange-500" />
+              Publier une offre de service
+            </DialogTitle>
+          </DialogHeader>
+          <div className="space-y-4">
+            <div>
+              <label className="text-sm font-medium mb-2 block">Service proposé</label>
+              <Input placeholder="Ex: Mixage professionnel, Production de beats..." />
+            </div>
+            <div>
+              <label className="text-sm font-medium mb-2 block">Description</label>
+              <Textarea rows={4} placeholder="Décrivez votre service en détail..." />
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label className="text-sm font-medium mb-2 block">Prix</label>
+                <Input type="number" placeholder="0.00" />
+              </div>
+              <div>
+                <label className="text-sm font-medium mb-2 block">Type</label>
+                <Select>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Sélectionnez" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="service">Service</SelectItem>
+                    <SelectItem value="beat">Beat/Instrumental</SelectItem>
+                    <SelectItem value="mix">Mixage</SelectItem>
+                    <SelectItem value="master">Mastering</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+            <div className="flex gap-2 justify-end">
+              <Button variant="outline" onClick={handleCloseModal}>Annuler</Button>
+              <Button>Publier l'offre</Button>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      {/* Modale pour les demandes */}
+      <Dialog open={showModal === 'request'} onOpenChange={() => setShowModal(null)}>
+        <DialogContent className="max-w-2xl">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              <Sparkles className="h-5 w-5 text-yellow-500" />
+              Publier une demande
+            </DialogTitle>
+          </DialogHeader>
+          <div className="space-y-4">
+            <div>
+              <label className="text-sm font-medium mb-2 block">Type de demande</label>
+              <Select>
+                <SelectTrigger>
+                  <SelectValue placeholder="Sélectionnez le type" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="collab">Collaboration</SelectItem>
+                  <SelectItem value="service">Recherche de service</SelectItem>
+                  <SelectItem value="opportunity">Opportunité</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <div>
+              <label className="text-sm font-medium mb-2 block">Description</label>
+              <Textarea rows={4} placeholder="Décrivez ce que vous cherchez..." />
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label className="text-sm font-medium mb-2 block">Budget (optionnel)</label>
+                <Input type="number" placeholder="0.00 €" />
+              </div>
+              <div>
+                <label className="text-sm font-medium mb-2 block">Délai</label>
+                <Select>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Sélectionnez" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="urgent">Urgent</SelectItem>
+                    <SelectItem value="asap">ASAP</SelectItem>
+                    <SelectItem value="flexible">Flexible</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+            <div className="flex gap-2 justify-end">
+              <Button variant="outline" onClick={handleCloseModal}>Annuler</Button>
+              <Button>Publier la demande</Button>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      {/* Modale pour les sondages */}
+      <Dialog open={showModal === 'survey'} onOpenChange={() => setShowModal(null)}>
+        <DialogContent className="max-w-2xl">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              <BarChart3 className="h-5 w-5 text-pink-500" />
+              Créer un sondage
+            </DialogTitle>
+          </DialogHeader>
+          <div className="space-y-4">
+            <div>
+              <label className="text-sm font-medium mb-2 block">Question</label>
+              <Input placeholder="Posez votre question..." />
+            </div>
+            <div className="space-y-2">
+              <label className="text-sm font-medium mb-2 block">Options</label>
+              <Input placeholder="Option 1" />
+              <Input placeholder="Option 2" />
+              <Button variant="outline" size="sm">+ Ajouter une option</Button>
+            </div>
+            <div>
+              <label className="text-sm font-medium mb-2 block">Durée (optionnel)</label>
+              <Select>
+                <SelectTrigger>
+                  <SelectValue placeholder="Sélectionnez" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="24h">24 heures</SelectItem>
+                  <SelectItem value="3d">3 jours</SelectItem>
+                  <SelectItem value="1w">1 semaine</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="flex gap-2 justify-end">
+              <Button variant="outline" onClick={handleCloseModal}>Annuler</Button>
+              <Button>Publier le sondage</Button>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   )
 }
