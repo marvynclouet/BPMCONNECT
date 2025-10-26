@@ -201,23 +201,7 @@ export const InteractiveVinyl = ({ size = 300, className = "" }: InteractiveViny
         </div>
       </div>
       
-      
-      {/* Indicateur de lecture */}
-      {isPlaying && !isDragging && (
-        <div className="absolute -top-8 left-1/2 transform -translate-x-1/2">
-          <div className="flex items-center gap-2 text-green-500 text-sm font-medium">
-            <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-            Playing
-          </div>
-        </div>
-      )}
-      
-      {/* Instructions */}
-      <div className="absolute -bottom-12 left-1/2 transform -translate-x-1/2 text-center">
-        <p className="text-xs text-muted-foreground">
-          🎧 Cliquez et faites glisser pour scratcher !
-        </p>
-      </div>
+
     </div>
   )
 }
