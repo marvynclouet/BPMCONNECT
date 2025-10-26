@@ -312,14 +312,7 @@ export default function HomePage() {
           <div className="lg:col-span-2 order-2 lg:order-none">
             {/* Créer un post */}
             <div className="mb-6">
-              <div className="flex gap-3">
-                <AvatarGenerator 
-                  name={user?.name || 'User'} 
-                  role={user?.role || 'creator'} 
-                  size={40}
-                  style="realistic"
-                />
-                <div className="flex-1 min-w-0 border rounded-lg overflow-hidden bg-card">
+              <div className="border rounded-lg overflow-hidden bg-card">
                   <Textarea
                     placeholder={`Quoi de neuf, ${user?.name?.split(' ')[0]} ? Partagez une opportunité, une collaboration...`}
                     value={newPost}
@@ -365,9 +358,8 @@ export default function HomePage() {
                   </div>
                 </div>
               </div>
-            </div>
 
-            {/* Filters & New Posts Counter */}
+            {/* Filters */}
             <div className="flex items-center justify-between mb-4 px-2">
               <div className="flex gap-2">
                 <Button
@@ -399,18 +391,6 @@ export default function HomePage() {
                   🎵 Nouveaux sons
                 </Button>
               </div>
-
-              {newPostsCount > 0 && (
-                <Button
-                  size="sm"
-                  variant="outline"
-                  className="text-blue-600 border-blue-300"
-                  onClick={() => setNewPostsCount(0)}
-                >
-                  <Sparkles className="h-3 w-3 mr-1" />
-                  {newPostsCount} nouveaux posts
-                </Button>
-              )}
             </div>
 
             {/* Stories */}
