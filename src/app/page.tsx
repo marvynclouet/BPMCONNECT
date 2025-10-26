@@ -60,7 +60,7 @@ export default function HomePage() {
                 🚀 Commencer maintenant
               </Button>
             </Link>
-            <Link href="/pricing">
+            <Link href="/pricing" className="hidden sm:block">
               <Button variant="outline" size="lg" className="w-full sm:w-auto text-lg px-8 py-3">
                 Voir les tarifs
               </Button>
