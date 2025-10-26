@@ -106,6 +106,35 @@ const MOCK_POSTS = [
       type: "stats",
       preview: "10,247 streams ce mois"
     }
+  },
+  {
+    id: 5,
+    user: {
+      name: "BPM Connect",
+      handle: "@bpmconnect",
+      avatar: null,
+      role: "Admin",
+      verified: true
+    },
+    content: "Quel est votre DAW (Digital Audio Workstation) préféré pour la production ? 🎹",
+    type: "survey",
+    timestamp: "Il y a 1h",
+    likes: 142,
+    comments: 56,
+    shares: 8,
+    tags: ["#Production", "#DAW", "#Survey"],
+    survey: {
+      question: "Quel est votre DAW préféré ?",
+      options: [
+        { text: "FL Studio", votes: 124, percentage: 42 },
+        { text: "Ableton Live", votes: 89, percentage: 30 },
+        { text: "Logic Pro", votes: 45, percentage: 15 },
+        { text: "Pro Tools", votes: 38, percentage: 13 }
+      ],
+      totalVotes: 296,
+      userVoted: false,
+      userChoice: null
+    }
   }
 ]
 
@@ -168,6 +197,9 @@ export default function HomePage() {
   // États pour les modales
   const [showModal, setShowModal] = useState<string | null>(null)
   const [postType, setPostType] = useState<'image' | 'video' | 'audio' | 'offer' | 'request' | 'survey' | null>(null)
+  
+  // État pour les votes des sondages
+  const [surveyVotes, setSurveyVotes] = useState<{ [postId: number]: number }>({})
 
   useEffect(() => {
     const checkAuth = () => {
@@ -228,8 +260,16 @@ export default function HomePage() {
       case 'product': return 'bg-green-100 text-green-800'
       case 'opportunity': return 'bg-purple-100 text-purple-800'
       case 'milestone': return 'bg-orange-100 text-orange-800'
+      case 'survey': return 'bg-pink-100 text-pink-800'
       default: return 'bg-muted text-gray-800'
     }
+  }
+
+  const handleSurveyVote = (postId: number, optionIndex: number) => {
+    setSurveyVotes(prev => ({
+      ...prev,
+      [postId]: optionIndex
+    }))
   }
 
   return (
@@ -484,6 +524,63 @@ export default function HomePage() {
                             {tag}
                           </span>
                         ))}
+                      </div>
+                    )}
+
+                    {/* Sondage */}
+                    {post.survey && (
+                      <div className="space-y-3 mb-3">
+                        <div className="bg-pink-50 dark:bg-pink-950/20 border border-pink-200 dark:border-pink-800 rounded-lg p-4">
+                          <h4 className="font-semibold text-sm mb-3 flex items-center gap-2">
+                            <BarChart3 className="h-4 w-4 text-pink-600" />
+                            {post.survey.question}
+                          </h4>
+                          <div className="space-y-2">
+                            {post.survey.options.map((option, index) => {
+                              const hasVoted = surveyVotes[post.id] !== undefined
+                              const isSelected = surveyVotes[post.id] === index
+                              const showResults = hasVoted || false
+                              
+                              return (
+                                <button
+                                  key={index}
+                                  onClick={() => !hasVoted && handleSurveyVote(post.id, index)}
+                                  disabled={hasVoted}
+                                  className={`w-full text-left p-3 rounded-lg border-2 transition-all ${
+                                    isSelected 
+                                      ? 'border-pink-500 bg-pink-100 dark:bg-pink-900/30' 
+                                      : 'border-pink-200 dark:border-pink-800 hover:border-pink-300 dark:hover:border-pink-700 hover:bg-pink-50 dark:hover:bg-pink-950/10'
+                                  } ${hasVoted ? 'cursor-default' : 'cursor-pointer'}`}
+                                >
+                                  <div className="flex items-center justify-between">
+                                    <span className="font-medium text-sm">{option.text}</span>
+                                    {showResults && (
+                                      <div className="flex items-center gap-2">
+                                        <span className="text-xs text-pink-600 dark:text-pink-400 font-semibold">
+                                          {option.votes} votes
+                                        </span>
+                                        <span className="text-xs text-muted-foreground">
+                                          ({option.percentage}%)
+                                        </span>
+                                      </div>
+                                    )}
+                                  </div>
+                                  {showResults && (
+                                    <div className="mt-2 h-2 bg-pink-200 dark:bg-pink-900 rounded-full overflow-hidden">
+                                      <div 
+                                        className="h-full bg-pink-500 transition-all duration-500"
+                                        style={{ width: `${option.percentage}%` }}
+                                      />
+                                    </div>
+                                  )}
+                                </button>
+                              )
+                            })}
+                          </div>
+                          <p className="text-xs text-muted-foreground mt-3 text-center">
+                            {post.survey.totalVotes} votes au total
+                          </p>
+                        </div>
                       </div>
                     )}
 
