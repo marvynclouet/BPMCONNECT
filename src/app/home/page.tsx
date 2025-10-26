@@ -9,7 +9,7 @@ import { Badge } from '@/components/ui/badge'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import Link from 'next/link'
-import { Heart, MessageCircle, Share2, Music, Users, Briefcase, TrendingUp, Plus, Image, FileAudio, Sparkles, ThumbsUp, PartyPopper, Flame, ClappingHands, Send } from 'lucide-react'
+import { Heart, MessageCircle, Share2, Music, Users, Briefcase, TrendingUp, Plus, Image, FileAudio, Sparkles, ThumbsUp, PartyPopper, Flame, Send, Video, FileText, BarChart3, Handshake, ShoppingCart } from 'lucide-react'
 import { Stories } from '@/components/feed/stories'
 import { CommunityStats } from '@/components/feed/community-stats'
 import { Logo } from '@/components/ui/logo'
@@ -314,9 +314,12 @@ export default function HomePage() {
             <Card className="mb-6">
               <CardContent className="pt-6">
                 <div className="flex gap-3">
-                  <Avatar className="h-10 w-10 flex-shrink-0">
-                    <AvatarFallback>{user?.name?.charAt(0) || 'U'}</AvatarFallback>
-                  </Avatar>
+                  <AvatarGenerator 
+                    name={user?.name || 'User'} 
+                    role={user?.role || 'creator'} 
+                    size={40}
+                    style="realistic"
+                  />
                   <div className="flex-1 min-w-0">
                     <Textarea
                       placeholder={`Quoi de neuf, ${user?.name?.split(' ')[0]} ? Partagez une opportunité, une collaboration...`}
@@ -325,30 +328,46 @@ export default function HomePage() {
                       className="resize-none border-0 p-3 focus-visible:ring-0 bg-transparent"
                       rows={3}
                     />
-                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mt-3 pt-3 border-t">
-                      <div className="flex flex-wrap gap-2">
-                        <Button size="sm" variant="ghost" className="flex items-center gap-2 h-8">
-                          <FileAudio className="h-4 w-4" />
-                          Audio
+                    <div className="flex flex-col gap-3 mt-3 pt-3 border-t">
+                      {/* Boutons d'actions - première ligne */}
+                      <div className="grid grid-cols-3 sm:grid-cols-6 gap-2">
+                        <Button size="sm" variant="ghost" className="flex items-center gap-2 h-9 flex-col sm:flex-row text-xs sm:text-sm">
+                          <Image className="h-4 w-4 text-blue-500" />
+                          <span className="hidden sm:inline">Image</span>
                         </Button>
-                        <Button size="sm" variant="ghost" className="flex items-center gap-2 h-8">
-                          <Image className="h-4 w-4" />
-                          Image
+                        <Button size="sm" variant="ghost" className="flex items-center gap-2 h-9 flex-col sm:flex-row text-xs sm:text-sm">
+                          <Video className="h-4 w-4 text-purple-500" />
+                          <span className="hidden sm:inline">Vidéo</span>
                         </Button>
-                        <Button size="sm" variant="ghost" className="flex items-center gap-2 h-8">
-                          <Sparkles className="h-4 w-4" />
-                          Opportunité
+                        <Button size="sm" variant="ghost" className="flex items-center gap-2 h-9 flex-col sm:flex-row text-xs sm:text-sm">
+                          <FileAudio className="h-4 w-4 text-green-500" />
+                          <span className="hidden sm:inline">Audio</span>
+                        </Button>
+                        <Button size="sm" variant="ghost" className="flex items-center gap-2 h-9 flex-col sm:flex-row text-xs sm:text-sm">
+                          <Handshake className="h-4 w-4 text-orange-500" />
+                          <span className="hidden sm:inline">Offre</span>
+                        </Button>
+                        <Button size="sm" variant="ghost" className="flex items-center gap-2 h-9 flex-col sm:flex-row text-xs sm:text-sm">
+                          <Sparkles className="h-4 w-4 text-yellow-500" />
+                          <span className="hidden sm:inline">Demande</span>
+                        </Button>
+                        <Button size="sm" variant="ghost" className="flex items-center gap-2 h-9 flex-col sm:flex-row text-xs sm:text-sm">
+                          <BarChart3 className="h-4 w-4 text-pink-500" />
+                          <span className="hidden sm:inline">Sondage</span>
                         </Button>
                       </div>
-                      <Button 
-                        size="sm" 
-                        onClick={handlePostSubmit}
-                        disabled={!newPost.trim()}
-                        className="w-full sm:w-auto"
-                      >
-                        <Send className="h-4 w-4 mr-1" />
-                        Publier
-                      </Button>
+                      {/* Bouton de publication */}
+                      <div className="flex justify-end">
+                        <Button 
+                          size="sm" 
+                          onClick={handlePostSubmit}
+                          disabled={!newPost.trim()}
+                          className="w-full sm:w-auto"
+                        >
+                          <Send className="h-4 w-4 mr-1" />
+                          Publier
+                        </Button>
+                      </div>
                     </div>
                   </div>
                 </div>

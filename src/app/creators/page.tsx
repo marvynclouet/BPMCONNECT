@@ -353,7 +353,7 @@ export default function CreatorsPage() {
 
             <Select
               value={filters.availability_status || ''}
-              onValueChange={(value) => setFilters({ ...filters, availability_status: value || undefined })}
+              onValueChange={(value) => setFilters({ ...filters, availability_status: (value as 'all' | 'available' | 'in_studio' | 'busy') || undefined })}
             >
               <SelectTrigger className="w-36">
                 <SelectValue placeholder="Disponibilité" />
