@@ -23,6 +23,7 @@ import { StudioAnimations, StudioVisualization } from '@/components/ui/studio-an
 import { SocialNetworks } from '@/components/ui/social-networks'
 import { BPMFormationSection } from '@/components/ui/bpm-formation-section'
 import { Footer } from '@/components/ui/footer'
+import { EmojiConfetti } from '@/components/ui/emoji-confetti'
 
 // Données mockées pour le feed
 const MOCK_POSTS = [
@@ -200,6 +201,9 @@ export default function HomePage() {
   
   // État pour les votes des sondages
   const [surveyVotes, setSurveyVotes] = useState<{ [postId: number]: number }>({})
+  
+  // État pour les animations de confettis d'émojis
+  const [confettiTrigger, setConfettiTrigger] = useState({ emoji: '', count: 0 })
 
   useEffect(() => {
     const checkAuth = () => {
@@ -593,6 +597,7 @@ export default function HomePage() {
                             variant="ghost"
                             className={`h-8 w-8 p-0 hover:bg-red-50 dark:hover:bg-red-950 ${reactedPosts.has(post.id) ? 'text-red-600 dark:text-red-400' : ''}`}
                             onClick={() => {
+                              setConfettiTrigger(prev => ({ emoji: '👍', count: prev.count + 1 }))
                               const newReacted = new Set(reactedPosts)
                               if (newReacted.has(post.id)) {
                                 newReacted.delete(post.id)
@@ -604,13 +609,28 @@ export default function HomePage() {
                           >
                             👍
                           </Button>
-                          <Button size="sm" variant="ghost" className="h-8 w-8 p-0 hover:bg-orange-50 dark:hover:bg-orange-950">
+                          <Button 
+                            size="sm" 
+                            variant="ghost" 
+                            className="h-8 w-8 p-0 hover:bg-orange-50 dark:hover:bg-orange-950"
+                            onClick={() => setConfettiTrigger(prev => ({ emoji: '❤️', count: prev.count + 1 }))}
+                          >
                             ❤️
                           </Button>
-                          <Button size="sm" variant="ghost" className="h-8 w-8 p-0 hover:bg-purple-50 dark:hover:bg-purple-950">
+                          <Button 
+                            size="sm" 
+                            variant="ghost" 
+                            className="h-8 w-8 p-0 hover:bg-purple-50 dark:hover:bg-purple-950"
+                            onClick={() => setConfettiTrigger(prev => ({ emoji: '🔥', count: prev.count + 1 }))}
+                          >
                             🔥
                           </Button>
-                          <Button size="sm" variant="ghost" className="h-8 w-8 p-0 hover:bg-yellow-50 dark:hover:bg-yellow-950">
+                          <Button 
+                            size="sm" 
+                            variant="ghost" 
+                            className="h-8 w-8 p-0 hover:bg-yellow-50 dark:hover:bg-yellow-950"
+                            onClick={() => setConfettiTrigger(prev => ({ emoji: '👏', count: prev.count + 1 }))}
+                          >
                             👏
                           </Button>
                           {reactedPosts.has(post.id) && (
@@ -901,6 +921,9 @@ export default function HomePage() {
           </div>
         </DialogContent>
       </Dialog>
+
+      {/* Animation de confettis d'émojis */}
+      <EmojiConfetti emoji={confettiTrigger.emoji} trigger={confettiTrigger.count} />
     </div>
   )
 }
