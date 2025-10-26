@@ -325,33 +325,33 @@ export default function HomePage() {
                       placeholder={`Quoi de neuf, ${user?.name?.split(' ')[0]} ? Partagez une opportunité, une collaboration...`}
                       value={newPost}
                       onChange={(e) => setNewPost(e.target.value)}
-                      className="resize-none border-0 p-3 focus-visible:ring-0 bg-transparent"
+                      className="resize-none border-0 px-3 py-2 focus-visible:ring-0 bg-transparent"
                       rows={3}
                     />
-                    <div className="flex flex-col gap-3 mt-3 pt-3 border-t">
+                    <div className="flex flex-col gap-3 mt-3 pt-3 border-t px-1">
                       {/* Boutons d'actions - première ligne */}
-                      <div className="grid grid-cols-3 sm:grid-cols-6 gap-2">
-                        <Button size="sm" variant="ghost" className="flex items-center gap-2 h-9 flex-col sm:flex-row text-xs sm:text-sm">
+                      <div className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-6 gap-1.5 sm:gap-2">
+                        <Button size="sm" variant="ghost" className="flex items-center justify-center gap-1.5 h-8 sm:h-9 flex-col text-xs">
                           <Image className="h-4 w-4 text-blue-500" />
                           <span className="hidden sm:inline">Image</span>
                         </Button>
-                        <Button size="sm" variant="ghost" className="flex items-center gap-2 h-9 flex-col sm:flex-row text-xs sm:text-sm">
+                        <Button size="sm" variant="ghost" className="flex items-center justify-center gap-1.5 h-8 sm:h-9 flex-col text-xs">
                           <Video className="h-4 w-4 text-purple-500" />
                           <span className="hidden sm:inline">Vidéo</span>
                         </Button>
-                        <Button size="sm" variant="ghost" className="flex items-center gap-2 h-9 flex-col sm:flex-row text-xs sm:text-sm">
+                        <Button size="sm" variant="ghost" className="flex items-center justify-center gap-1.5 h-8 sm:h-9 flex-col text-xs">
                           <FileAudio className="h-4 w-4 text-green-500" />
                           <span className="hidden sm:inline">Audio</span>
                         </Button>
-                        <Button size="sm" variant="ghost" className="flex items-center gap-2 h-9 flex-col sm:flex-row text-xs sm:text-sm">
+                        <Button size="sm" variant="ghost" className="flex items-center justify-center gap-1.5 h-8 sm:h-9 flex-col text-xs">
                           <Handshake className="h-4 w-4 text-orange-500" />
                           <span className="hidden sm:inline">Offre</span>
                         </Button>
-                        <Button size="sm" variant="ghost" className="flex items-center gap-2 h-9 flex-col sm:flex-row text-xs sm:text-sm">
+                        <Button size="sm" variant="ghost" className="flex items-center justify-center gap-1.5 h-8 sm:h-9 flex-col text-xs">
                           <Sparkles className="h-4 w-4 text-yellow-500" />
                           <span className="hidden sm:inline">Demande</span>
                         </Button>
-                        <Button size="sm" variant="ghost" className="flex items-center gap-2 h-9 flex-col sm:flex-row text-xs sm:text-sm">
+                        <Button size="sm" variant="ghost" className="flex items-center justify-center gap-1.5 h-8 sm:h-9 flex-col text-xs">
                           <BarChart3 className="h-4 w-4 text-pink-500" />
                           <span className="hidden sm:inline">Sondage</span>
                         </Button>
