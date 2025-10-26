@@ -656,16 +656,25 @@ export default function HomePage() {
                 <Input type="number" placeholder="0.00" />
               </div>
               <div>
-                <label className="text-sm font-medium mb-2 block">Type</label>
+                <label className="text-sm font-medium mb-2 block">Type de service</label>
                 <Select>
                   <SelectTrigger>
                     <SelectValue placeholder="Sélectionnez" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="service">Service</SelectItem>
-                    <SelectItem value="beat">Beat/Instrumental</SelectItem>
-                    <SelectItem value="mix">Mixage</SelectItem>
-                    <SelectItem value="master">Mastering</SelectItem>
+                    <SelectItem value="beat">🎵 Beat / Instrumental</SelectItem>
+                    <SelectItem value="production">🎹 Production musicale</SelectItem>
+                    <SelectItem value="mix">🎚️ Mixage</SelectItem>
+                    <SelectItem value="master">🎧 Mastering</SelectItem>
+                    <SelectItem value="arrangement">🎼 Arrangement</SelectItem>
+                    <SelectItem value="recording">🎙️ Enregistrement studio</SelectItem>
+                    <SelectItem value="photo">📸 Photographie</SelectItem>
+                    <SelectItem value="photoshoot">📷 Séance photo / Photoshoot</SelectItem>
+                    <SelectItem value="clip">🎬 Clip vidéo</SelectItem>
+                    <SelectItem value="montage">✂️ Montage vidéo</SelectItem>
+                    <SelectItem value="cover">🖼️ Cover design / Pochette</SelectItem>
+                    <SelectItem value="community">👥 Community management</SelectItem>
+                    <SelectItem value="other">🔧 Autre service</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
