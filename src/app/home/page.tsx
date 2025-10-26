@@ -357,12 +357,12 @@ export default function HomePage() {
                         </Button>
                       </div>
                       {/* Bouton de publication */}
-                      <div className="flex justify-end">
+                      <div className="flex justify-start">
                         <Button 
                           size="sm" 
                           onClick={handlePostSubmit}
                           disabled={!newPost.trim()}
-                          className="w-full sm:w-auto"
+                          className="w-auto"
                         >
                           <Send className="h-4 w-4 mr-1" />
                           Publier
