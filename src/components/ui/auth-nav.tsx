@@ -41,7 +41,7 @@ export function AuthNav() {
   return (
     <div className="flex items-center gap-2">
       <MiniThemeToggle />
-      <Link href="/pricing">
+      <Link href="/pricing" className="hidden sm:block">
         <Button variant="outline" size="sm">
           Tarifs
         </Button>
