@@ -12,15 +12,15 @@ export function EmojiConfetti({ emoji, trigger }: EmojiConfettiProps) {
 
   useEffect(() => {
     if (trigger > 0) {
-      // Créer 15 particules d'émoji
-      const newParticles = Array.from({ length: 15 }, (_, i) => ({
+      // Créer 20 particules d'émoji pour couvrir tout l'écran
+      const newParticles = Array.from({ length: 20 }, (_, i) => ({
         id: i,
-        x: 50 + (Math.random() - 0.5) * 20, // Position X autour du clic
-        y: 50 + (Math.random() - 0.5) * 20, // Position Y autour du clic
-        rotation: Math.random() * 360,
-        velocityY: -2 - Math.random() * 2, // Vitesse verticale (vers le haut)
-        velocityX: (Math.random() - 0.5) * 3, // Vitesse horizontale aléatoire
-        scale: 0.8 + Math.random() * 0.4, // Taille variable
+        x: 10 + Math.random() * 80, // Position X sur tout l'écran
+        y: 10 + Math.random() * 80, // Position Y sur tout l'écran
+        rotation: Math.random() * 720, // Rotation plus importante
+        velocityY: -3 - Math.random() * 4, // Vitesse verticale plus rapide
+        velocityX: (Math.random() - 0.5) * 8, // Vitesse horizontale plus large
+        scale: 1.5 + Math.random() * 1, // Émojis plus gros (1.5x à 2.5x)
       }))
 
       setParticles(newParticles)
@@ -28,7 +28,7 @@ export function EmojiConfetti({ emoji, trigger }: EmojiConfettiProps) {
       // Nettoyer les particules après l'animation
       const timeout = setTimeout(() => {
         setParticles([])
-      }, 1500)
+      }, 2000)
 
       return () => clearTimeout(timeout)
     }
@@ -41,12 +41,12 @@ export function EmojiConfetti({ emoji, trigger }: EmojiConfettiProps) {
       {particles.map((particle) => (
         <div
           key={particle.id}
-          className="absolute text-3xl select-none"
+          className="absolute text-6xl select-none"
           style={{
             left: `${particle.x}%`,
             top: `${particle.y}%`,
             transform: `translate(-50%, -50%) rotate(${particle.rotation}deg) scale(${particle.scale})`,
-            animation: `emojiFloat 1.5s ease-out forwards`,
+            animation: `emojiFloat 2s ease-out forwards`,
           }}
         >
           {emoji}
@@ -62,8 +62,8 @@ export function EmojiConfetti({ emoji, trigger }: EmojiConfettiProps) {
             opacity: 0;
             transform: translate(
               calc(-50% + var(--velocityX, 0px)),
-              calc(-50% + var(--velocityY, -200px))
-            ) rotate(calc(var(--rotation, 0deg) + 360deg)) scale(0.5);
+              calc(-50% + var(--velocityY, -400px))
+            ) rotate(calc(var(--rotation, 0deg) + 720deg)) scale(0.3);
           }
         }
       `}</style>
