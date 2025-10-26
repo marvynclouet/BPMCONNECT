@@ -311,63 +311,61 @@ export default function HomePage() {
           {/* Feed principal */}
           <div className="lg:col-span-2 order-2 lg:order-none">
             {/* Créer un post */}
-            <Card className="mb-6">
-              <CardContent className="pt-6">
-                <div className="flex gap-3">
-                  <AvatarGenerator 
-                    name={user?.name || 'User'} 
-                    role={user?.role || 'creator'} 
-                    size={40}
-                    style="realistic"
+            <div className="mb-6">
+              <div className="flex gap-3">
+                <AvatarGenerator 
+                  name={user?.name || 'User'} 
+                  role={user?.role || 'creator'} 
+                  size={40}
+                  style="realistic"
+                />
+                <div className="flex-1 min-w-0 border rounded-lg overflow-hidden bg-card">
+                  <Textarea
+                    placeholder={`Quoi de neuf, ${user?.name?.split(' ')[0]} ? Partagez une opportunité, une collaboration...`}
+                    value={newPost}
+                    onChange={(e) => setNewPost(e.target.value)}
+                    className="resize-none border-0 px-3 py-2 focus-visible:ring-0 bg-transparent"
+                    rows={3}
                   />
-                  <div className="flex-1 min-w-0 border rounded-lg overflow-hidden bg-card">
-                    <Textarea
-                      placeholder={`Quoi de neuf, ${user?.name?.split(' ')[0]} ? Partagez une opportunité, une collaboration...`}
-                      value={newPost}
-                      onChange={(e) => setNewPost(e.target.value)}
-                      className="resize-none border-0 px-3 py-2 focus-visible:ring-0 bg-transparent"
-                      rows={3}
-                    />
-                    {/* Boutons d'actions à l'intérieur du champ */}
-                    <div className="border-t px-3 py-2 bg-muted/30">
-                      <div className="flex items-center justify-between gap-2">
-                        {/* Boutons d'actions */}
-                        <div className="flex items-center gap-1 flex-wrap">
-                          <Button size="sm" variant="ghost" className="h-7 px-2" title="Image">
-                            <Image className="h-4 w-4 text-blue-500" />
-                          </Button>
-                          <Button size="sm" variant="ghost" className="h-7 px-2" title="Vidéo">
-                            <Video className="h-4 w-4 text-purple-500" />
-                          </Button>
-                          <Button size="sm" variant="ghost" className="h-7 px-2" title="Audio">
-                            <FileAudio className="h-4 w-4 text-green-500" />
-                          </Button>
-                          <Button size="sm" variant="ghost" className="h-7 px-2" title="Offre de service">
-                            <Handshake className="h-4 w-4 text-orange-500" />
-                          </Button>
-                          <Button size="sm" variant="ghost" className="h-7 px-2" title="Demande">
-                            <Sparkles className="h-4 w-4 text-yellow-500" />
-                          </Button>
-                          <Button size="sm" variant="ghost" className="h-7 px-2" title="Sondage">
-                            <BarChart3 className="h-4 w-4 text-pink-500" />
-                          </Button>
-                        </div>
-                        {/* Bouton de publication */}
-                        <Button 
-                          size="sm" 
-                          onClick={handlePostSubmit}
-                          disabled={!newPost.trim()}
-                          className="h-7"
-                        >
-                          <Send className="h-3 w-3 mr-1" />
-                          Publier
+                  {/* Boutons d'actions à l'intérieur du champ */}
+                  <div className="border-t px-3 py-2 bg-muted/30">
+                    <div className="flex items-center justify-between gap-2">
+                      {/* Boutons d'actions */}
+                      <div className="flex items-center gap-1 flex-wrap">
+                        <Button size="sm" variant="ghost" className="h-7 px-2" title="Image">
+                          <Image className="h-4 w-4 text-blue-500" />
+                        </Button>
+                        <Button size="sm" variant="ghost" className="h-7 px-2" title="Vidéo">
+                          <Video className="h-4 w-4 text-purple-500" />
+                        </Button>
+                        <Button size="sm" variant="ghost" className="h-7 px-2" title="Audio">
+                          <FileAudio className="h-4 w-4 text-green-500" />
+                        </Button>
+                        <Button size="sm" variant="ghost" className="h-7 px-2" title="Offre de service">
+                          <Handshake className="h-4 w-4 text-orange-500" />
+                        </Button>
+                        <Button size="sm" variant="ghost" className="h-7 px-2" title="Demande">
+                          <Sparkles className="h-4 w-4 text-yellow-500" />
+                        </Button>
+                        <Button size="sm" variant="ghost" className="h-7 px-2" title="Sondage">
+                          <BarChart3 className="h-4 w-4 text-pink-500" />
                         </Button>
                       </div>
+                      {/* Bouton de publication */}
+                      <Button 
+                        size="sm" 
+                        onClick={handlePostSubmit}
+                        disabled={!newPost.trim()}
+                        className="h-7"
+                      >
+                        <Send className="h-3 w-3 mr-1" />
+                        Publier
+                      </Button>
                     </div>
                   </div>
                 </div>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
 
             {/* Filters & New Posts Counter */}
             <div className="flex items-center justify-between mb-4 px-2">
