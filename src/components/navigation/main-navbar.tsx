@@ -79,11 +79,11 @@ export const MainNavbar = () => {
 
   return (
     <header className="bg-card/95 backdrop-blur-sm border-b sticky top-0 z-50 shadow-sm">
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
+      <div className="container mx-auto px-2 sm:px-4 max-w-7xl">
+        <div className="flex items-center justify-between h-14 sm:h-16">
           
           {/* Logo & Brand */}
-          <div className="flex items-center gap-3 min-w-0">
+          <div className="flex items-center gap-2 min-w-0">
             <Link href={isAuthenticated ? "/home" : "/"} className="flex items-center shrink-0">
               <LogoMini className="hover:scale-105 transition-transform duration-200" />
             </Link>
@@ -100,7 +100,7 @@ export const MainNavbar = () => {
           </div>
 
           {/* Navigation Desktop */}
-          <nav className="hidden lg:flex items-center gap-1">
+          <nav className="hidden lg:flex items-center gap-0.5">
             {navLinks.map((link) => {
               const IconComponent = link.icon
               const isActive = isActivePath(link.href)
@@ -109,13 +109,13 @@ export const MainNavbar = () => {
                 <Link
                   key={link.name}
                   href={link.href}
-                  className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 hover:bg-accent/50 ${
+                  className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-medium transition-all duration-200 hover:bg-accent/50 ${
                     isActive 
                       ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20 font-semibold' 
                       : 'text-muted-foreground hover:text-foreground'
                   }`}
                 >
-                  <IconComponent size={16} />
+                  <IconComponent size={14} />
                   {link.name}
                 </Link>
               )
@@ -123,14 +123,14 @@ export const MainNavbar = () => {
           </nav>
 
           {/* Actions Droite */}
-          <div className="flex items-center gap-2 sm:gap-3">
+          <div className="flex items-center gap-1.5 sm:gap-2">
             
             {/* Theme Toggle */}
             <MiniThemeToggle />
             
             {/* Utilisateur Connecté */}
             {isAuthenticated && user ? (
-              <div className="flex items-center gap-2 sm:gap-3">
+              <div className="flex items-center gap-1.5 sm:gap-2">
                 {/* Créer Service (si pas sur la page de création) */}
                 {!pathname.includes('/create') && (
                   <Link href="/services/create">
@@ -142,19 +142,19 @@ export const MainNavbar = () => {
                 )}
                 
                 {/* Profil Utilisateur */}
-                <div className="flex items-center gap-2 sm:gap-3">
+                <div className="flex items-center gap-1.5 sm:gap-2">
                   <AvatarGenerator 
                     name={user.name || 'User'} 
                     role={user.role} 
-                    size={32}
+                    size={28}
                     showRoleIcon={true}
                     showOnlineStatus={true}
                     style="realistic"
                     className="ring-2 ring-border"
                   />
-                  <div className="hidden lg:block">
-                    <p className="font-semibold text-sm text-foreground">{user.name}</p>
-                    <p className="text-xs text-muted-foreground capitalize font-medium">{user.role}</p>
+                  <div className="hidden xl:block">
+                    <p className="font-semibold text-xs text-foreground">{user.name}</p>
+                    <p className="text-[10px] text-muted-foreground capitalize font-medium">{user.role}</p>
                   </div>
                 </div>
                 
