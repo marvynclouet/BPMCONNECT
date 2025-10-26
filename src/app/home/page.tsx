@@ -320,7 +320,7 @@ export default function HomePage() {
                     size={40}
                     style="realistic"
                   />
-                  <div className="flex-1 min-w-0">
+                  <div className="flex-1 min-w-0 border rounded-lg overflow-hidden bg-card">
                     <Textarea
                       placeholder={`Quoi de neuf, ${user?.name?.split(' ')[0]} ? Partagez une opportunité, une collaboration...`}
                       value={newPost}
@@ -328,43 +328,38 @@ export default function HomePage() {
                       className="resize-none border-0 px-3 py-2 focus-visible:ring-0 bg-transparent"
                       rows={3}
                     />
-                    <div className="flex flex-col gap-3 mt-3 pt-3 border-t px-1">
-                      {/* Boutons d'actions - première ligne */}
-                      <div className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-6 gap-1.5 sm:gap-2">
-                        <Button size="sm" variant="ghost" className="flex items-center justify-center gap-1.5 h-8 sm:h-9 flex-col text-xs">
-                          <Image className="h-4 w-4 text-blue-500" />
-                          <span className="hidden sm:inline">Image</span>
-                        </Button>
-                        <Button size="sm" variant="ghost" className="flex items-center justify-center gap-1.5 h-8 sm:h-9 flex-col text-xs">
-                          <Video className="h-4 w-4 text-purple-500" />
-                          <span className="hidden sm:inline">Vidéo</span>
-                        </Button>
-                        <Button size="sm" variant="ghost" className="flex items-center justify-center gap-1.5 h-8 sm:h-9 flex-col text-xs">
-                          <FileAudio className="h-4 w-4 text-green-500" />
-                          <span className="hidden sm:inline">Audio</span>
-                        </Button>
-                        <Button size="sm" variant="ghost" className="flex items-center justify-center gap-1.5 h-8 sm:h-9 flex-col text-xs">
-                          <Handshake className="h-4 w-4 text-orange-500" />
-                          <span className="hidden sm:inline">Offre</span>
-                        </Button>
-                        <Button size="sm" variant="ghost" className="flex items-center justify-center gap-1.5 h-8 sm:h-9 flex-col text-xs">
-                          <Sparkles className="h-4 w-4 text-yellow-500" />
-                          <span className="hidden sm:inline">Demande</span>
-                        </Button>
-                        <Button size="sm" variant="ghost" className="flex items-center justify-center gap-1.5 h-8 sm:h-9 flex-col text-xs">
-                          <BarChart3 className="h-4 w-4 text-pink-500" />
-                          <span className="hidden sm:inline">Sondage</span>
-                        </Button>
-                      </div>
-                      {/* Bouton de publication */}
-                      <div className="flex justify-start">
+                    {/* Boutons d'actions à l'intérieur du champ */}
+                    <div className="border-t px-3 py-2 bg-muted/30">
+                      <div className="flex items-center justify-between gap-2">
+                        {/* Boutons d'actions */}
+                        <div className="flex items-center gap-1 flex-wrap">
+                          <Button size="sm" variant="ghost" className="h-7 px-2" title="Image">
+                            <Image className="h-4 w-4 text-blue-500" />
+                          </Button>
+                          <Button size="sm" variant="ghost" className="h-7 px-2" title="Vidéo">
+                            <Video className="h-4 w-4 text-purple-500" />
+                          </Button>
+                          <Button size="sm" variant="ghost" className="h-7 px-2" title="Audio">
+                            <FileAudio className="h-4 w-4 text-green-500" />
+                          </Button>
+                          <Button size="sm" variant="ghost" className="h-7 px-2" title="Offre de service">
+                            <Handshake className="h-4 w-4 text-orange-500" />
+                          </Button>
+                          <Button size="sm" variant="ghost" className="h-7 px-2" title="Demande">
+                            <Sparkles className="h-4 w-4 text-yellow-500" />
+                          </Button>
+                          <Button size="sm" variant="ghost" className="h-7 px-2" title="Sondage">
+                            <BarChart3 className="h-4 w-4 text-pink-500" />
+                          </Button>
+                        </div>
+                        {/* Bouton de publication */}
                         <Button 
                           size="sm" 
                           onClick={handlePostSubmit}
                           disabled={!newPost.trim()}
-                          className="w-auto"
+                          className="h-7"
                         >
-                          <Send className="h-4 w-4 mr-1" />
+                          <Send className="h-3 w-3 mr-1" />
                           Publier
                         </Button>
                       </div>
