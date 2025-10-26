@@ -1,3 +1,5 @@
+'use client'
+
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -9,10 +11,7 @@ import { getRoleIcon } from '@/components/ui/role-icons'
 import { InteractiveVinyl } from '@/components/ui/interactive-vinyl'
 import { Footer } from '@/components/ui/footer'
 import { AvatarGenerator } from '@/components/ui/avatar-generator'
-import { homeMetadata } from '@/components/seo/metadata'
 import { ChevronDown } from 'lucide-react'
-
-export const metadata = homeMetadata
 
 export default function HomePage() {
   return (
@@ -60,11 +59,16 @@ export default function HomePage() {
                 🚀 Commencer maintenant
               </Button>
             </Link>
-            <Link href="/pricing" className="hidden sm:block">
-              <Button variant="outline" size="lg" className="w-full sm:w-auto text-lg px-8 py-3">
-                Voir les tarifs
-              </Button>
-            </Link>
+            <Button 
+              variant="outline" 
+              size="lg" 
+              className="w-full sm:w-auto text-lg px-8 py-3"
+              onClick={() => {
+                document.getElementById('tarifs')?.scrollIntoView({ behavior: 'smooth' })
+              }}
+            >
+              💰 Voir les tarifs
+            </Button>
           </div>
 
           {/* Scroll Indicator */}
@@ -319,7 +323,7 @@ export default function HomePage() {
       </div>
 
       {/* Plans Section */}
-      <div className="container mx-auto px-4 py-16">
+      <div id="tarifs" className="container mx-auto px-4 py-16">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
             Choisissez votre plan
